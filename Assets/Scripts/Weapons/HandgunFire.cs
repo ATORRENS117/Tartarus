@@ -1,14 +1,31 @@
+using System.Collections;
 using UnityEngine;
 
 public class HandgunFire : MonoBehaviour
 {
     [SerializeField] AudioSource gunFire;
-    // Update is called once per frame
+    [SerializeField] GameObject handgun;
+    [SerializeField] bool canFire = true;
+   
     void Update()
     {
         if (Input.GetMouseButton(0))
         {
-            gunFire.Play();
+            if (canFire == true)
+            {
+                canFire = false;
+                StartCoroutine(FiringGun());
+            }
         }
     }
+    IEnumerator FiringGun() 
+    {
+        gunFire.Play();
+        handgun.GetComponent<Animator>().Play("HandgunFire");
+        yield return new WaitForSeconds(0.5f);
+        handgun.GetComponent<Animator>().Play("New State");
+        yield return new WaitForSeconds(0.1f);
+        canFire = true;
+    }
+
 }
