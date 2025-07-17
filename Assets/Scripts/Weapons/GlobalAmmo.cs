@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class GlobalAmmo : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public static int handgunAmmoCount = 8;
+    [SerializeField] GameObject ammoDisplay;
     void Update()
     {
-        
+        ammoDisplay.GetComponent<TMPro.TMP_Text>().text = "" + handgunAmmoCount;
     }
 }
