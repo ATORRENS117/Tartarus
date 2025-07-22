@@ -6,6 +6,7 @@ public class Gun : MonoBehaviour
     public float range = 100f;
 
     public Camera fpsCam;
+    public ParticleSystem muzzleFlash;
 
     void Update()
     {
@@ -16,10 +17,18 @@ public class Gun : MonoBehaviour
     }
     void Shoot () 
     {
+        muzzleFlash.Play();
+
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range)) 
         {
             Debug.Log(hit.transform.name);
+
+            Target target = hit.transform.GetComponent<Target>();
+            if (target != null)
+            {
+                target.TakeDamage(damage);
+            }
         }
     }
 }
