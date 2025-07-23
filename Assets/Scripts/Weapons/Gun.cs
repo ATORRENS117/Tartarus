@@ -19,9 +19,17 @@ public class Gun : MonoBehaviour
 
     private float nextTimeToFire = 0f;
 
+    public Animator animator;
+
     void Start()
     {
         currentAmmo = maxAmmo;
+    }
+
+    void OnEnable()
+    {
+        isReloading = false;
+        animator.SetBool("Reloading", false);
     }
     void Update()
     {
@@ -45,7 +53,11 @@ public class Gun : MonoBehaviour
     {
         isReloading = true;
 
-        yield return new WaitForSeconds(reloadTime);
+        animator.SetBool("Reloading", true);
+
+        yield return new WaitForSeconds(reloadTime - .25f);
+        animator.SetBool("Reloading", false);
+        yield return new WaitForSeconds(.25f);
 
         currentAmmo = maxAmmo;
         isReloading = false;
