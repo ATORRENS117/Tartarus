@@ -825,6 +825,8 @@ MonoBehaviour:
   range: 50
   fireRate: 1
   impactForce: 200
+  maxAmmo: 10
+  reloadTime: 4
   fpsCam: {fileID: 1484077406}
   muzzleFlash: {fileID: 1860457818}
   impactEffect: {fileID: 50335750}
@@ -15733,6 +15735,8 @@ MonoBehaviour:
   range: 200
   fireRate: 15
   impactForce: 30
+  maxAmmo: 30
+  reloadTime: 1.5
   fpsCam: {fileID: 1484077406}
   muzzleFlash: {fileID: 699370584}
   impactEffect: {fileID: 50335750}
@@ -20800,6 +20804,8 @@ MonoBehaviour:
   range: 100
   fireRate: 2
   impactForce: 20
+  maxAmmo: 8
+  reloadTime: 1
   fpsCam: {fileID: 1484077406}
   muzzleFlash: {fileID: 1633889635}
   impactEffect: {fileID: 50335750}

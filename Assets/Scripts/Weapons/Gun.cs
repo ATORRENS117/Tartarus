@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Gun : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Gun : MonoBehaviour
     public int maxAmmo = 10;
     private int currentAmmo;
     public float reloadTime = 1f;
+    private bool isReloading = false; 
 
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
@@ -23,9 +25,12 @@ public class Gun : MonoBehaviour
     }
     void Update()
     {
+        if (isReloading)
+            return;
+
         if(currentAmmo <= 0)
         {
-            Reload();
+            StartCoroutine(Reload());
             return;
         }
 
@@ -36,10 +41,14 @@ public class Gun : MonoBehaviour
         }
     }
     
-    void Reload ()
+    IEnumerator Reload ()
     {
-        Debug.Log("Reloading");
+        isReloading = true;
+
+        yield return new WaitForSeconds(reloadTime);
+
         currentAmmo = maxAmmo;
+        isReloading = false;
     }
     void Shoot () 
     {
